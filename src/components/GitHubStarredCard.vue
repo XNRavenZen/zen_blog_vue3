@@ -34,7 +34,7 @@ import {
   toRefs,
   Ref,
   onUnmounted,
-} from "@vue/composition-api";
+} from "vue";
 
 export default defineComponent({
   name: "GitHubStarredCard",

@@ -3,7 +3,7 @@
 </template>
   
 <script>
-import { defineComponent, ref } from '@vue/composition-api';
+import { defineComponent, ref } from 'vue';
 export default defineComponent({
   name: "MyScrollbar",
   setup(props, context) {

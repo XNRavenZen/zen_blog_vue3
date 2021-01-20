@@ -7,7 +7,7 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, watch, ref } from "@vue/composition-api";
+import { computed, defineComponent, watch, ref } from "vue";
 import defaultBaseIcon from "./BaseIcon";
 
 export default defineComponent({

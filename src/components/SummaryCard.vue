@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, reactive, toRefs, computed } from '@vue/composition-api'
+import { defineComponent, ref, reactive, toRefs, computed } from 'vue'
 
 export default defineComponent({
   props: {

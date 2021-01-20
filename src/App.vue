@@ -4,12 +4,27 @@
     <router-link to="/Tag">Tag</router-link>
     <router-link to="/Post">Post</router-link>
   </div>
+  <template v-for="(info, index) in filtedMenu" :key="`${info.role}${index}`">
+    <component :is="info.componentName" v-bind="info.bind" v-on="info.on" />
+  </template>
   <router-view />
-  <!-- <router-view class="main" name="header"></router-view>
-  <router-view class="main"></router-view>
-  <router-view class="main" name="footer"></router-view> -->
 </template>
-
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
+  setup() {
+    console.error("首页部署");
+    const filtedMenu = [
+      {
+        componentName: "RouterLinkComp",
+        role: "root",
+        bind: { innerWord: "首页" }
+      }
+    ];
+    return { filtedMenu };
+  }
+});
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

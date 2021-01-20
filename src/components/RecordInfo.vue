@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-import { computed, defineComponent, toRefs } from "@vue/composition-api";
+import { computed, defineComponent, toRefs } from "vue";
 export default defineComponent({
   /*  props: {
      ICPNum: { // ICP备案号

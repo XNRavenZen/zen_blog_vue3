@@ -2,7 +2,7 @@
   <span :class="iconClass" @click="$emit('click',$event)"></span>
 </template>
 <script lang="ts">
-import { defineComponent, ref, computed, toRefs } from "@vue/composition-api";
+import { defineComponent, ref, computed, toRefs } from "vue";
 
 const Component = defineComponent({
   // 已启用类型推断

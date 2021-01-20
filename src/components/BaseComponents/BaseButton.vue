@@ -9,7 +9,7 @@
   </a>
 </template>
 <script>
-import { defineComponent, toRefs, ref } from "@vue/composition-api";
+import { defineComponent, toRefs, ref } from "vue";
 
 export default defineComponent({
   props: {

@@ -12,7 +12,7 @@ title: 在vuepress里面用组合式API写全局loading
 
 ```js
 import Vue from "vue";
-import { default as compositionAPI, createApp } from "@vue/composition-api";
+import { default as compositionAPI, createApp } from "vue";
 import DataLoading from "../components/DataLoading.vue";
 
 Vue.use(compositionAPI);
