@@ -1,33 +1,48 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: () => import("../views/Home")
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: () => import("../views/login")
   },
   {
     path: "/Tag",
     name: "Tag",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ "../views/Tag")
+    component: () => import("../views/Tag")
   },
   {
     path: "/Post",
     name: "Post",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ "../views/Post")
+    component: () => import("../views/Post")
   }
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  const isLogin = localStorage.getItem("isLogined");
+  // if (to.path === from.path) return;
+  // console.error(to, from);
+  // const toPath = isLogin || to.path == "/register" ? to.path : "/login";
+  // console.error(toPath);
+  // next(toPath);
+  isLogin || to.path === "/" || to.path == "/login" || to.path == "/register"
+    ? next()
+    : next({
+        name: "login",
+        params: {
+          toPath: to.path
+        }
+      });
 });
 
 export default router;

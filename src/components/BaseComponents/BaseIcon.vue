@@ -1,35 +1,36 @@
 <template>
-  <span :class="iconClass" @click="$emit('click',$event)"></span>
+  <span :class="iconClass" @click="$emit('click', $event)"></span>
 </template>
 <script lang="ts">
-import { defineComponent, ref, computed, toRefs } from "vue";
+import { defineComponent, computed, toRefs } from "vue";
 
 const Component = defineComponent({
   // 已启用类型推断
   props: {
     fontFamily: {
       type: String,
-      default: "zen",
+      default: "zen"
     },
     fontClass: {
       type: String,
-      default: "zen-",
+      default: "zen-"
     },
     suffix: {
-      type: String,
+      type: String
       // required: true
-    },
+    }
   },
   setup(props) {
     const { fontFamily, fontClass, suffix } = toRefs(props);
     // console.error(fontFamily, fontClass, suffix);
     const iconClass = computed(
-      () => `icon ${fontFamily.value} ${fontClass.value}${suffix.value}`
+      () =>
+        `icon ${fontFamily.value} ${fontClass.value}${suffix && suffix.value}`
     );
     return {
-      iconClass,
+      iconClass
     };
-  },
+  }
 });
 export default Component;
 </script>

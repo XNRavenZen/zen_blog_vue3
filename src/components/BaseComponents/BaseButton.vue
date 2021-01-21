@@ -17,29 +17,34 @@ export default defineComponent({
       type: String
     },
     width: {
-      type: Number | String,
+      type: Number || String,
       default: "5rem"
     }
   },
   setup(props, context) {
     // const { fillText } = toRefs(props);
-    const buttonWidth = props.width;
-    const doClick = (event) => {
+    const { width } = toRefs(props);
+    const doClick = event => {
       // console.error("执行 click 事件", event.button);
-      context.emit("click", event)
-    }
+      context.emit("click", event);
+    };
     const bindOptions = {};
-    const bindStyles = ref(Object.assign({}, {
-      "--button-width": buttonWidth instanceof Number ? `${buttonWidth}rem` : buttonWidth
-    }))
+    const bindStyles = ref(
+      Object.assign(
+        {},
+        {
+          "--button-width": width instanceof Number ? `${width}rem` : width
+        }
+      )
+    );
     return {
       ...props.fillText,
       bindOptions,
       bindStyles,
       doClick
-    }
+    };
   }
-})
+});
 </script>
 <style lang="scss">
 .base-button {

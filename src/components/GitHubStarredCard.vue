@@ -29,29 +29,24 @@
   </div>
 </template>
 <script lang="ts">
-import {
-  defineComponent,
-  toRefs,
-  Ref,
-  onUnmounted,
-} from "vue";
+import { defineComponent, toRefs, onUnmounted } from "vue";
 
 export default defineComponent({
   name: "GitHubStarredCard",
   props: {
     starredUrls: {
-      type: Array,
-    },
+      type: Array
+    }
   },
-  setup(props, context) {
+  setup(props) {
     const { starredUrls } = toRefs(props);
     onUnmounted(() => {
       console.error("组件被销毁");
     });
-    const urls = starredUrls.value;
+    const urls = starredUrls && starredUrls.value;
     return {
-      urls,
+      urls
     };
-  },
+  }
 });
 </script>

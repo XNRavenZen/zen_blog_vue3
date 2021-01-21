@@ -7,14 +7,14 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, watch, ref } from "vue";
-import defaultBaseIcon from "./BaseIcon";
+import { computed, defineComponent, ref } from "vue";
+import defaultBaseIcon from "./BaseComponents/BaseIcon.vue";
 
 export default defineComponent({
   components: {
-    BaseIcon: defaultBaseIcon,
+    BaseIcon: defaultBaseIcon
   },
-  setup(props, context) {
+  setup() {
     const isShow = ref(false);
     const toggleBar = () => {
       isShow.value = !isShow.value;
@@ -24,7 +24,7 @@ export default defineComponent({
       return {
         "--searchbar-opac": isShow.value ? 1 : 0,
         "--searchbar-top": "2rem",
-        "--searchbar-width": "10rem",
+        "--searchbar-width": "10rem"
       };
     });
     /* watch(isShow, (newVal, oldVal) => {
@@ -34,9 +34,9 @@ export default defineComponent({
     }); */
     return {
       bindStyle,
-      toggleBar,
+      toggleBar
     };
-  },
+  }
 });
 </script>
 <style lang="scss">

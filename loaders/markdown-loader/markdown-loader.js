@@ -15,7 +15,6 @@ const md = require("markdown-it")({
 
   // 当 typographer 启用时，成倍的 + 单引号替换对。
   // 或者智能(smartquotes)引号等，可以是 String 或 Array。
-  //
   // 比方说，你可以支持 '«»„“' 给俄罗斯人使用， '„“‚‘'  给德国人使用。
   // 还有 ['«\xA0', '\xA0»', '‹\xA0', '\xA0›'] 给法国人使用（包括 nbsp）。
   quotes: "“”‘’",
@@ -35,12 +34,9 @@ const md = require("markdown-it")({
         console.error("错误", __);
       }
     }
-
-    return (
-      '<pre v-pre class="highlight"><code>' +
-      md.utils.escapeHtml(str) +
-      "</code></pre>"
-    );
+    return `<pre v-pre class="highlight"><code>
+              ${md.utils.escapeHtml(str)}
+            </code></pre>`;
   }
 })
   .use(emoji)
@@ -62,6 +58,5 @@ module.exports = function(source, sourceMap, meta) {
     ? source.replace(metaTitleReg, "")
     : source; // TODO 去掉前题,不会处理
   console.error(md.renderer);
-  debugger;
   return `<section class="markdown-body">${md.render(noFMData)}</section>`;
 };

@@ -1,26 +1,38 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
+    <!-- <router-link to="/">Home</router-link>
     <router-link to="/Tag">Tag</router-link>
-    <router-link to="/Post">Post</router-link>
+    <router-link to="/Post">Post</router-link> -->
+    <template v-for="(info, index) in filtedMenu" :key="`${info.role}${index}`">
+      <component :is="info.componentName" v-bind="info.bind" v-on="info.on" />
+    </template>
   </div>
-  <template v-for="(info, index) in filtedMenu" :key="`${info.role}${index}`">
-    <component :is="info.componentName" v-bind="info.bind" v-on="info.on" />
-  </template>
   <router-view />
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+import RouterLinkComp from "./components/RouterLinkComp.vue";
+import { menuRouter } from "./config/menuRouter";
 export default defineComponent({
+  components: { RouterLinkComp },
   setup() {
     console.error("首页部署");
-    const filtedMenu = [
-      {
-        componentName: "RouterLinkComp",
-        role: "root",
-        bind: { innerWord: "首页" }
-      }
-    ];
+    const filtedMenu = computed(() =>
+      menuRouter.map(mr => {
+        const onObj = mr.bind.onObj;
+        return Object.assign({}, mr, {
+          on: Object.assign(
+            {},
+            onObj.reduce((sum, cur) => Object.assign({}, sum, cur), {}),
+            {
+              click: () => {
+                // store.commit("toggleAsiderMenu");
+              }
+            }
+          )
+        });
+      })
+    );
     return { filtedMenu };
   }
 });

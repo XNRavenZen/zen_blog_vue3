@@ -9,16 +9,16 @@ import { defineComponent, toRefs } from "vue";
 export default defineComponent({
   props: {
     text: {
-      type: String || Number,
-    },
+      type: String || Number
+    }
   },
-  setup(props, context) {
+  setup(props) {
     const { text } = toRefs(props);
-    const innerText = text.value;
+    const innerText = text && text.value;
     return {
-      innerText,
+      innerText
     };
-  },
+  }
 });
 </script>
 <style lang="scss">
