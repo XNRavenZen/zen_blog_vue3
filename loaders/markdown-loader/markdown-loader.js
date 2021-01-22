@@ -18,7 +18,6 @@ const md = require("markdown-it")({
   // 比方说，你可以支持 '«»„“' 给俄罗斯人使用， '„“‚‘'  给德国人使用。
   // 还有 ['«\xA0', '\xA0»', '‹\xA0', '\xA0›'] 给法国人使用（包括 nbsp）。
   quotes: "“”‘’",
-
   // 高亮函数，会返回转义的 HTML。
   // 如果源字符串未更改，且应该进行外部的转义，或许返回 ''
   // 如果结果以 <pre ... 开头，内部包装器则会跳过。
@@ -57,6 +56,15 @@ module.exports = function(source, sourceMap, meta) {
   const noFMData = metaTitleReg.test(source)
     ? source.replace(metaTitleReg, "")
     : source; // TODO 去掉前题,不会处理
-  console.error(md.renderer);
+  console.error(
+    "\n|||\n",
+    sourceMap,
+    "\n|||\n",
+    meta,
+    "\n|||\n",
+    source.slice(0, 100),
+    "\n|||\n",
+    noFMData.slice(0, 100)
+  );
   return `<section class="markdown-body">${md.render(noFMData)}</section>`;
 };

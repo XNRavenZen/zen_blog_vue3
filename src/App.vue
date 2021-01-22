@@ -1,8 +1,5 @@
 <template>
   <div id="nav">
-    <!-- <router-link to="/">Home</router-link>
-    <router-link to="/Tag">Tag</router-link>
-    <router-link to="/Post">Post</router-link> -->
     <template v-for="(info, index) in filtedMenu" :key="`${info.role}${index}`">
       <component :is="info.componentName" v-bind="info.bind" v-on="info.on" />
     </template>
@@ -19,18 +16,7 @@ export default defineComponent({
     console.error("首页部署");
     const filtedMenu = computed(() =>
       menuRouter.map(mr => {
-        const onObj = mr.bind.onObj;
-        return Object.assign({}, mr, {
-          on: Object.assign(
-            {},
-            onObj.reduce((sum, cur) => Object.assign({}, sum, cur), {}),
-            {
-              click: () => {
-                // store.commit("toggleAsiderMenu");
-              }
-            }
-          )
-        });
+        return Object.assign({}, mr, {});
       })
     );
     return { filtedMenu };

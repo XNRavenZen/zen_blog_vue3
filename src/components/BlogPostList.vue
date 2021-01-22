@@ -1,13 +1,13 @@
 <template>
   <div class="blog-post-list">
-    <template v-for="tag in blogList">
+    <template v-for="(tag, index) in blogList" :key="index">
       <SummaryCard :post="tag" />
     </template>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref, reactive, toRefs, watch, computed } from 'vue'
+import { defineComponent, toRefs, computed } from "vue";
 
 export default defineComponent({
   props: {
@@ -16,18 +16,14 @@ export default defineComponent({
       required: true
     }
   },
-  setup(props, context) {
-    const { list } = toRefs(props)
-    const $themeConfig = context.root.$themeConfig;
-    const blogList = computed(() => list.value.filter(blog => /^(\/_posts\/)/.test(blog.regularPath)))
-    /* watch(list, (newVal, oldVal) => {
-
-    }, {
-      deep: true
-    }) */
+  setup(props) {
+    const { list } = toRefs(props);
+    const blogList = computed(() =>
+      list.value.filter(blog => /^(\/_posts\/)/.test(blog.regularPath))
+    );
     return {
       blogList
-    }
-  },
-})
+    };
+  }
+});
 </script>
