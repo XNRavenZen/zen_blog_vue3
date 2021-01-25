@@ -1,14 +1,18 @@
 <template>
-  <div v-html="coding"></div>
+  <div v-html="mdContent"></div>
 </template>
-<script>
-import { defineComponent } from "vue";
-const coding = require("@/blog/post/coding.md");
+<script lang="ts">
+import { computed, defineComponent } from "vue";
+import { useRoute } from "vue-router";
+import "github-markdown-css";
+// const coding = require("@/blog/post/coding.md");
 export default defineComponent({
+  name: "Post",
   setup() {
-    // const coding = require("$/blog/post/coding.md");
-    console.error("查看引入的md文件", coding);
-    return { coding };
+    const route = useRoute(); // 获取params等参数
+    // console.error(route.params.content);
+    const mdContent = computed(() => route.params.content);
+    return { mdContent };
   }
 });
 </script>

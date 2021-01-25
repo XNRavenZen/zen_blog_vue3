@@ -3,7 +3,6 @@ import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
-import "github-markdown-css";
 import all from "@/components/index";
 
 const app = createApp(App);

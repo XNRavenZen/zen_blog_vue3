@@ -12,19 +12,19 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/login.vue")
   },
   {
-    path: "/Tag",
+    path: "/tag",
     name: "Tag",
     component: () => import("../views/Tag.vue")
-  },
-  {
-    path: "/Post",
-    name: "Post",
-    component: () => import("../views/Post.vue")
   },
   {
     path: "/configure",
     name: "configure",
     component: () => import("../views/configure.vue")
+  },
+  {
+    path: "/post",
+    name: "Post",
+    component: () => import("../views/Post.vue")
   }
 ];
 

@@ -29,14 +29,14 @@ const menuRouter = [
     },
     role: "nav"
   },
-  {
+  /* {
     componentName: "RouterLinkComp",
     bind: {
       path: "/Post",
       innerWord: "文章"
     },
     role: "nav"
-  },
+  }, */
   /* {
     componentName: "RouterLinkComp",
     bind: {
