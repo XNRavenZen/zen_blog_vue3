@@ -11,7 +11,12 @@ export default defineComponent({
   setup() {
     const route = useRoute(); // 获取params等参数
     // console.error(route.params.content);
-    const mdContent = computed(() => route.params.content);
+    const contentFromRoute = route.params.content;
+    contentFromRoute &&
+      localStorage.setItem("postContent", contentFromRoute as string); // 存下post内容
+    const mdContent = computed(
+      () => contentFromRoute || localStorage.getItem("postContent")
+    );
     return { mdContent };
   }
 });

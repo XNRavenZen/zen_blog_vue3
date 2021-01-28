@@ -11,6 +11,12 @@ const routes: Array<RouteRecordRaw> = [
     name: "login",
     component: () => import("../views/login.vue")
   },
+  // register
+  {
+    path: "/register",
+    name: "register",
+    component: () => import("../views/register.vue")
+  },
   {
     path: "/tag",
     name: "Tag",
@@ -36,7 +42,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const isLogin = localStorage.getItem("isLogined");
   // if (to.path === from.path) return;
-  // console.error(to, from);
+  console.error(to, from);
   // const toPath = isLogin || to.path == "/register" ? to.path : "/login";
   // console.error(toPath);
   // next(toPath);

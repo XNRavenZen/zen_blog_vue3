@@ -4,16 +4,17 @@
   </div>
   <!-- <Post :mdContent="pageContent"></Post> -->
 </template>
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 import importAll from "@/utils/importAll";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 export default defineComponent({
   name: "Tag",
   setup() {
     const sourceMap = importAll(
-      require.context("/public", true, /\.md$/),
+      // require.context("../../public/blog", true, /\.md$/),
+      require.context("../../public/blog", true, /\.md$/),
       /\.md$/,
       "g"
     );
@@ -22,8 +23,9 @@ export default defineComponent({
       // console.log(sourceMap[sourceKey]);
       return { name: sourceKey, content: sourceMap[sourceKey].content };
     });
+    const route = useRoute(); // 获取params等参数
     const router = useRouter(); // 用于跳转等
-    const goToPost = ($event, pageContent) => {
+    const goToPost = ($event: Event, pageContent: string) => {
       router.push({
         name: "Post",
         params: {
